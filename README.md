@@ -1,112 +1,130 @@
-# 🧬 SCT-Center Color Segmentation for Melanoma Diagnosis
+# SCT-Center Color Segmentation for Melanoma Diagnosis
 
-This project implements an interactive image segmentation application in **C++ using OpenCV**, based on the **SCT-Center color space transform**. The system is tailored for medical image preprocessing and was developed to assist in identifying skin cancer regions (melanoma) by extracting the region of interest (ROI) from dermatoscopic images.
+A computer vision application for medical image processing that segments skin lesions using the SCT-Center (Spherical Coordinate Transform) algorithm to assist in melanoma diagnosis.
 
----
+## 📋 Overview
 
-## 🧠 Overview
+This project implements a 5-step color segmentation algorithm specifically designed for analyzing melanoma images. The SCT-Center transformation decouples color information from brightness variations, making it robust for medical image analysis under different lighting conditions.
 
-The application allows the user to load a color image and interactively segment the region of interest using a combination of:
+## 🎯 Features
 
-- Median filtering
-- SCT-Center color quantization
-- Cluster-based pixel selection
-- Morphological operations (erosion & dilation)
-- Final ROI computation (area and percentage)
+- **Median Filtering**: Noise reduction with configurable kernel size
+- **SCT-Center Transformation**: Advanced color space transformation (15×15 quantization = 225 colors)
+- **Interactive ROI Selection**: Point-and-click interface for region of interest selection
+- **Morphological Operations**: Automatic noise removal and shape refinement
+- **Area Calculation**: Precise measurement of segmented regions with percentage calculations
+- **Real-time Visualization**: Live preview of segmentation results
 
-> 📌 This tool was developed for a medical imaging project focused on skin cancer (melanoma) analysis using color space transformations and human-in-the-loop refinement.
+## 🚀 Algorithm Steps
 
----
+### Step 1: Preprocessing
+- Applies 3×3 median filter to reduce acquisition noise
+- Optional color quantization from 2²⁴ to 256 colors
 
-## 🖼️ Interface Example
+### Step 2: SCT-Center Color Segmentation
+- Converts RGB to spherical coordinates (L, angle A, angle B)
+- Maps to 15×15 quantized color space (225 total colors)
+- Decouples color information from brightness variations
 
-<p align="center">
-  <img src="./Screenshot 2025-06-05 083727.png" alt="SCT Segmentation UI" width="700"/>
-</p>
+### Step 3: Interactive Fine-tuning
+- User clicks on regions of interest
+- Creates RGB cubic clusters around selected points
+- Adjustable delta parameter for cluster size (0-128)
+- Real-time mask updates with blue overlay
 
----
+### Step 4: Morphological Filtering
+- Erosion followed by dilation (opening operation)
+- Uses 3×3 cross-shaped structural element
+- Removes small artifacts while preserving main structure
+- Generates binary mask and color overlay
 
-## 📌 Algorithm Steps
+### Step 5: Area Computation
+- Calculates segmented area in pixels
+- Computes percentage relative to total image area
+- Displays results for medical analysis
 
-### 🔹 Step 1: Preprocessing
-- Apply **3x3 median filter** independently on each RGB channel to remove acquisition noise.
-- (Optional) Avoid RGB quantization to 256 colors to preserve segmentation fidelity.
+## 🛠️ Technical Requirements
 
-### 🔹 Step 2: SCT-Center Color Transform
-- Transform the image from RGB to **SCT (Spherical Coordinate Transform)**:
-  - \( L = \sqrt{R^2 + G^2 + B^2} \)
-  - \( A = \text{atan2}(\sqrt{G^2 + R^2}, B) \)
-  - \( B = \text{atan2}(G, R) \)
-- Quantize angles A and B to a grid (e.g. 15x15 = 225 color classes)
-- Remap segmented SCT colors back to RGB
+### Dependencies
+- **OpenCV 4.x** - Computer vision library
+- **Visual Studio** - C++ development environment
+- **Windows OS** - Required for file dialog functionality
 
-### 🔹 Step 3: Interactive Clustering
-- User clicks on a region of interest in the image
-- A **24³ cube** is generated in the RGB space around that color
-- All pixels inside the cube are marked (in blue)
-- This step can be repeated until the ROI is fully segmented
-
-### 🔹 Step 4: Morphological Filtering
-- Apply **erosion + dilation** using 3x3 cross-shaped structuring elements
-- Eliminates noise and enhances object boundaries
-- Outputs a binarized image (ROI in black, background in white)
-
-### 🔹 Step 5: ROI Area Calculation
-- Calculate:
-  - Number of pixels marked as ROI
-  - Percentage of image occupied by ROI
-- Display results in the console
-
----
-
-## 💡 Key Benefits
-
-- ✅ Precise control via interactive clustering
-- ✅ Robust to illumination variance due to SCT transformation
-- ✅ Flexible and adjustable parameters for experimentation
-- ✅ Easy-to-use GUI with click-based segmentation
-- ✅ Suitable for medical image preprocessing pipelines
-
----
-
-## 🛠️ Technologies Used
-
-- **Language**: C++  
-- **Library**: OpenCV  
-- **Concepts**: Color space transforms, clustering, morphological operations, interactive GUI
-
----
-
-## 🏁 How to Run
+### Build Instructions
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sct-color-segmentation.git
+git clone https://github.com/yourusername/sct-center-melanoma-segmentation.git
+cd sct-center-melanoma-segmentation
 ```
 
-2. Build the project:
-```bash
-g++ main.cpp -o sct-segment `pkg-config --cflags --libs opencv4`
-```
+2. Open project in Visual Studio
+3. Configure OpenCV paths in project settings
+4. Build and run the application
 
-3. Run the application:
-```bash
-./sct-segment
-```
+## 📊 Usage
 
-> Use mouse clicks to mark ROI points and keyboard keys to switch between processing steps.
+1. **Launch Application**: Run the executable
+2. **Select Image**: Choose a melanoma image file through the dialog
+3. **View Preprocessing**: Observe median filtering results
+4. **Interactive Segmentation**: 
+   - Click on regions of interest in the SCT-Center image
+   - Adjust Delta slider for sensitivity (recommended: 15-25)
+   - Continue clicking until entire lesion is covered
+5. **Review Results**: 
+   - Binary mask shows segmented region
+   - Overlay shows original image with highlighted ROI
+   - Area and percentage statistics are displayed
+6. **Process Next Image**: Press any key to continue with another image
 
----
+## 🎨 Visual Results
+
+The application generates multiple visualization outputs:
+- **Preprocessed Image**: After median filtering
+- **SCT-Center Quantized**: 225-color reduced image
+- **Interactive Segmentation**: Real-time blue overlay
+- **Binary Mask**: Black ROI on white background
+- **Color Overlay**: Blue ROI on original image
+
+## 📈 Medical Applications
+
+This tool assists dermatologists and medical professionals in:
+- **Lesion Boundary Detection**: Precise segmentation of irregular melanoma shapes
+- **Area Measurement**: Quantitative analysis for medical documentation
+- **Color Analysis**: Identification of variegated coloring patterns
+- **Diagnostic Support**: Objective measurement tools for clinical assessment
+
+## 🔬 Algorithm Advantages
+
+- **Lighting Independence**: SCT transformation handles varying illumination
+- **Color Preservation**: Maintains critical color information for diagnosis
+- **User-Guided**: Interactive selection ensures medical expertise integration
+- **Morphological Refinement**: Automatic cleanup of segmentation artifacts
+- **Quantitative Output**: Precise measurements for medical records
+
+## 📝 Research Background
+
+Based on the SCT-Center algorithm developed for variegated coloring identification in skin tumors. The spherical coordinate transformation provides superior color-brightness decoupling compared to traditional RGB analysis, making it particularly suitable for medical imaging applications.
+
+## ⚠️ Important Notes
+
+- This tool is designed for **research and educational purposes**
+- **Not intended for clinical diagnosis** without professional medical supervision
+- Results should be validated by qualified dermatologists
+- Accuracy depends on image quality and proper user interaction
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
 
 ## 📚 References
 
-- Umbaugh Scot E., *Computer Vision and Image Processing*, Prentice Hall, NJ, 1998.
-- [SCT-Center segmentation article](https://biblioteca.utcluj.ro/files/carti-online-cu-coperta/625-8.pdf#page=44)
+[1] Umbaugh Scott E., "Computer Vision and Image Processing", Prentice Hall, NJ, 1998.
+
+## 📧 Contact
+
+For questions or collaborations, please open an issue on GitHub.
 
 ---
 
-## 📄 License
-
-This project is part of a medical imaging lab assignment and is intended for educational and research use only.
-
-© 2025 Francesco Maxim
+**Keywords**: Melanoma, Medical Imaging, Color Segmentation, SCT-Center, Computer Vision, OpenCV, Skin Cancer, Image Processing
