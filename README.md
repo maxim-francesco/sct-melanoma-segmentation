@@ -88,7 +88,7 @@ cd sct-center-melanoma-segmentation
 #### Step 1: Preprocessing
 | Before | After |
 |--------|-------|
-| ![Original](images/test2 (2).bmp) | ![Filtered](images/Screenshot 2025-06-06 172914.png) |
+| ![Original](images/test2 (2).bmp) | ![Filtered](./images/Screenshot 2025-06-06 172914.png) |
 | Original melanoma image | After 3×3 median filtering |
 
 #### Step 2: SCT-Center Transformation
