@@ -98,6 +98,8 @@ cd sct-center-melanoma-segmentation
 
 #### Step 3: Interactive Segmentation
 ![Interactive Selection](images/aoi.png)
+
+
 *Real-time ROI selection with adjustable delta parameter*
 
 #### Steps 4-5: Morphological Filtering & Results
