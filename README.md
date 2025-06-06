@@ -102,7 +102,7 @@ cd sct-center-melanoma-segmentation
 
 #### Steps 4-5: Morphological Filtering & Results
 | Binary Mask | Color Overlay | 
-|-------------|---------------|------------|
+|-------------|---------------|
 | ![Binary](images/result.png) | ![Overlay](images/aoi.png) | 
 | ROI in black | Blue overlay on original | 
 
