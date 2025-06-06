@@ -79,12 +79,32 @@ cd sct-center-melanoma-segmentation
 
 ## 🎨 Visual Results
 
-The application generates multiple visualization outputs:
-- **Preprocessed Image**: After median filtering
-- **SCT-Center Quantized**: 225-color reduced image
-- **Interactive Segmentation**: Real-time blue overlay
-- **Binary Mask**: Black ROI on white background
-- **Color Overlay**: Blue ROI on original image
+### Algorithm Workflow
+![Algorithm Steps](images/algorithm_workflow.png)
+*Complete 5-step segmentation process*
+
+### Step-by-Step Results
+
+#### Step 1: Preprocessing
+| Before | After |
+|--------|-------|
+| ![Original](images/original_image.png) | ![Filtered](images/median_filtered.png) |
+| Original melanoma image | After 3×3 median filtering |
+
+#### Step 2: SCT-Center Transformation
+<img src="images/sct_center_quantized.png" alt="SCT-Center Result" width="500">
+
+*15×15 quantization producing 225 distinct colors*
+
+#### Step 3: Interactive Segmentation
+![Interactive Selection](images/interactive_segmentation.gif)
+*Real-time ROI selection with adjustable delta parameter*
+
+#### Steps 4-5: Morphological Filtering & Results
+| Binary Mask | Color Overlay | Statistics |
+|-------------|---------------|------------|
+| ![Binary](images/binary_mask.png) | ![Overlay](images/color_overlay.png) | ![Stats](images/area_calculation.png) |
+| ROI in black | Blue overlay on original | Area: 15,847 pixels (12.3%) |
 
 ## 📈 Medical Applications
 
@@ -116,6 +136,10 @@ Based on the SCT-Center algorithm developed for variegated coloring identificati
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📚 References
 
