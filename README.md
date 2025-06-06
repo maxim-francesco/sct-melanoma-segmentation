@@ -79,10 +79,6 @@ cd sct-center-melanoma-segmentation
 
 ## 🎨 Visual Results
 
-### Algorithm Workflow
-![Algorithm Steps](images/algorithm_workflow.png)
-*Complete 5-step segmentation process*
-
 ### Step-by-Step Results
 
 #### Step 1: Preprocessing
