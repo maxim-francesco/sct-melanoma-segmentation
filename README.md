@@ -101,10 +101,10 @@ cd sct-center-melanoma-segmentation
 *Real-time ROI selection with adjustable delta parameter*
 
 #### Steps 4-5: Morphological Filtering & Results
-| Binary Mask | Color Overlay | Statistics |
+| Binary Mask | Color Overlay | 
 |-------------|---------------|------------|
 | ![Binary](images/result.png) | ![Overlay](images/aoi.png) | 
-| ROI in black | Blue overlay on original | Area: 15,847 pixels (12.3%) |
+| ROI in black | Blue overlay on original | 
 
 ## 📈 Medical Applications
 
