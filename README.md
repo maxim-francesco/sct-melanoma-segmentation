@@ -88,22 +88,22 @@ cd sct-center-melanoma-segmentation
 #### Step 1: Preprocessing
 | Before | After |
 |--------|-------|
-| ![Original](images/test2 (2).bmp) | ![Filtered](images/original.bmp) |
+| ![Original](images/original.bmp) | ![Filtered](images/filtered.png) |
 | Original melanoma image | After 3×3 median filtering |
 
 #### Step 2: SCT-Center Transformation
-<img src="images/sct_center_quantized.png" alt="SCT-Center Result" width="500">
+<img src="images/sct.png" alt="SCT-Center Result" width="500">
 
 *15×15 quantization producing 225 distinct colors*
 
 #### Step 3: Interactive Segmentation
-![Interactive Selection](images/interactive_segmentation.gif)
+![Interactive Selection](images/aoi.png)
 *Real-time ROI selection with adjustable delta parameter*
 
 #### Steps 4-5: Morphological Filtering & Results
 | Binary Mask | Color Overlay | Statistics |
 |-------------|---------------|------------|
-| ![Binary](images/binary_mask.png) | ![Overlay](images/color_overlay.png) | ![Stats](images/area_calculation.png) |
+| ![Binary](images/result.png) | ![Overlay](images/aoi.png) | 
 | ROI in black | Blue overlay on original | Area: 15,847 pixels (12.3%) |
 
 ## 📈 Medical Applications
